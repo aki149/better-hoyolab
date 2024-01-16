@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name         Better Hoyolab
 // @namespace    http://tampermonkey.net/
-// @version      2024-01-16
+// @version      2024-01-16.02
 // @description  try to take over the world!
-// @author       Aki
+// @author       You
 // @match        https://act.hoyolab.com/app/community-game-records-sea/index.html
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=hoyolab.com
+// @require      http://code.jquery.com/jquery-3.4.1.min.js
 // @grant        none
 // ==/UserScript==
 
@@ -58,6 +59,19 @@
 
             });
 
+        }
+
+        if (hash.startsWith('#/ys/role/all?')) {
+            // all characters, make it compact
+            waitForElem('.activity-card-pop').then(() => {
+                $('.activity-card-pop').css({ margin: 1 });
+                $('.activity-card-pop .star').remove();
+                $('.activity-card-pop .name').remove();
+                $('.activity-card-pop .level').css({ top: -22, position: 'relative', background: 'rgba(0,0, 0, 0.5)' });
+                $('.activity-card-pop .avatar').css({ height: '100%', borderRadius: 0 });
+                $('.activity-card-pop .role-medium-pos').css({ height: 98 });
+
+            });
         }
     }
 
