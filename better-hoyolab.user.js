@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         Better Hoyolab
 // @namespace    http://tampermonkey.net/
-// @version      2024-01-16.04
+// @version      2024-01-16.05
 // @description  try to take over the world!
 // @author       You
 // @match        https://act.hoyolab.com/app/community-game-records-sea/index.html*
+// @match        https://act.hoyolab.com/app/community-game-records-sea/rpg/index.html*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=hoyolab.com
 // @require      http://code.jquery.com/jquery-3.4.1.min.js
 // @grant        none
@@ -104,6 +105,20 @@
                 $('.activity-card-pop .role-medium-pos').css({ height: 98 });
             });
         }
+
+
+        if (hash.startsWith('#/hsr/forgotten_hall')) {
+            // HSR abyss
+
+            waitForElem('.hsr-abyss-floor').then(() => {
+                $('.floor-top').css({ height: 40 });
+                $('.floor-top .floor-top-left').css({ flexDirection: 'row' });
+                $('.floor-top .floor-top-left .floor-wheel').css({ marginLeft: 8 });
+                $('.floor-list').css({ padding: '8px 24px 16px' });
+                $('.floor-list .item-top').remove();
+            });
+        }
+
     }
 
 
@@ -117,4 +132,5 @@
 
     modifyPage(hash);
 })();
+
 
